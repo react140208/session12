@@ -33,7 +33,7 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="DrugList" component={DrugListScreen} />
+        <Stack.Screen name="DrugList" component={DrugListScreen} options={{ header: () => <Text>لیست داروها</Text> }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
