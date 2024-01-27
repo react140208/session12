@@ -4,6 +4,7 @@ import { supabase } from '../api';
 export default function DrugListScreen({ navigation }: any) {
     const [drugList, setDrugList] = useState<any[]>([]);
     const [page, setPage] = useState(0)
+    const [loading, setLoading] = useState(false);
 
     const goBack = () => {
         navigation.goBack();
@@ -11,15 +12,16 @@ export default function DrugListScreen({ navigation }: any) {
 
     useEffect(() => {
         (async () => {
+            setLoading(true);
             const resp = await supabase.from('Drug').select("*")
-                .range(page * 10, (page + 1) * 10);
-
+                .range(page * 10, ((page + 1) * 10) - 1);
             if (resp.data) {
                 if (page === 0)
                     setDrugList(resp.data)
                 else
                     setDrugList([...drugList, ...resp.data])
             }
+            setLoading(false);
         })();
     }, [page])
 
@@ -35,7 +37,9 @@ export default function DrugListScreen({ navigation }: any) {
                     {item.drugGenericFaName}
                 </Text>}
                     onEndReached={loadNextPage}
-                    keyExtractor={(item) => item.id}>
+                    keyExtractor={(item) => item.id}
+                    refreshing={loading}
+                >
 
                 </FlatList>
                 <Text>DrugList</Text>
