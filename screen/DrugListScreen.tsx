@@ -3,22 +3,39 @@ import { View, Text, Button, SafeAreaView, FlatList, StyleSheet } from 'react-na
 import { supabase } from '../api';
 export default function DrugListScreen({ navigation }: any) {
     const [drugList, setDrugList] = useState<any[]>([]);
+    const [page, setPage] = useState(0)
+
     const goBack = () => {
         navigation.goBack();
     }
+
     useEffect(() => {
         (async () => {
-            const resp = await supabase.from('Drug').select("*").limit(10);
-            if (resp.data)
-                setDrugList(resp.data)
+            const resp = await supabase.from('Drug').select("*")
+                .range(page * 10, (page + 1) * 10);
+
+            if (resp.data) {
+                if (page === 0)
+                    setDrugList(resp.data)
+                else
+                    setDrugList([...drugList, ...resp.data])
+            }
         })();
-    }, [])
+    }, [page])
+
+    const loadNextPage = () => {
+        setPage(page + 1);
+        console.log(page)
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <FlatList data={drugList} renderItem={({ item }) => <Text style={styles.item}>
                     {item.drugGenericFaName}
-                </Text>} keyExtractor={(item) => item.id}>
+                </Text>}
+                    onEndReached={loadNextPage}
+                    keyExtractor={(item) => item.id}>
 
                 </FlatList>
                 <Text>DrugList</Text>
