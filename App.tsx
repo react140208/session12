@@ -17,6 +17,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import HomeScreen from './screen/HomeScreen';
 import DrugListScreen from './screen/DrugListScreen';
+import DrugDetailScreen from './screen/DrugDetailScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -34,6 +35,7 @@ function App(): React.JSX.Element {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="DrugList" component={DrugListScreen} options={{ header: () => <Text>لیست داروها</Text> }} />
+        <Stack.Screen name="DrugDetail" component={DrugDetailScreen} options={{ header: () => <Text>لیست داروها</Text> }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

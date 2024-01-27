@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { View, Text, Button, SafeAreaView, FlatList, StyleSheet, RefreshControl } from 'react-native'
+import { View, Text, Button, SafeAreaView, FlatList, StyleSheet, RefreshControl, TouchableHighlight } from 'react-native'
 import { supabase } from '../api';
 export default function DrugListScreen({ navigation }: any) {
     const [drugList, setDrugList] = useState<any[]>([]);
@@ -27,15 +27,17 @@ export default function DrugListScreen({ navigation }: any) {
 
     const loadNextPage = () => {
         setPage(page + 1);
-        console.log(page)
     }
 
+    const goToDetail = (id: any) => {
+        navigation.navigate('DrugDetail', { id });
+    }
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <FlatList data={drugList} renderItem={({ item }) => <Text style={styles.item}>
-                    {item.drugGenericFaName}
-                </Text>}
+                <FlatList data={drugList} renderItem={({ item }) => <TouchableHighlight onPress={() => goToDetail(item.id)} style={styles.item}>
+                    <Text style={{ fontSize: 20 }}> {item.drugGenericFaName}</Text>
+                </TouchableHighlight>}
                     onEndReached={loadNextPage}
                     keyExtractor={(item) => item.id}
                     refreshing={refreshing}
@@ -65,6 +67,5 @@ const styles = StyleSheet.create({
         backgroundColor: 'silver',
         padding: 20,
         marginVertical: 10,
-        fontSize: 24
     }
 });
