@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { View, Text, Button, SafeAreaView, FlatList, StyleSheet } from 'react-native'
+import { View, Text, Button, SafeAreaView, FlatList, StyleSheet, RefreshControl } from 'react-native'
 import { supabase } from '../api';
 export default function DrugListScreen({ navigation }: any) {
     const [drugList, setDrugList] = useState<any[]>([]);
     const [page, setPage] = useState(0)
-    const [loading, setLoading] = useState(false);
+    const [refreshing, setRefreshing] = useState(false);
 
     const goBack = () => {
         navigation.goBack();
@@ -12,7 +12,7 @@ export default function DrugListScreen({ navigation }: any) {
 
     useEffect(() => {
         (async () => {
-            setLoading(true);
+            setRefreshing(true);
             const resp = await supabase.from('Drug').select("*")
                 .range(page * 10, ((page + 1) * 10) - 1);
             if (resp.data) {
@@ -21,7 +21,7 @@ export default function DrugListScreen({ navigation }: any) {
                 else
                     setDrugList([...drugList, ...resp.data])
             }
-            setLoading(false);
+            setRefreshing(false);
         })();
     }, [page])
 
@@ -38,7 +38,14 @@ export default function DrugListScreen({ navigation }: any) {
                 </Text>}
                     onEndReached={loadNextPage}
                     keyExtractor={(item) => item.id}
-                    refreshing={loading}
+                    refreshing={refreshing}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={() => setPage(0)}
+                        >
+                        </RefreshControl>
+                    }
                 >
 
                 </FlatList>
