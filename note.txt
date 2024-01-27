@@ -3,3 +3,4 @@ react-navigation
     https://reactnavigation.org/
 
     npm install @react-navigation/native @react-navigation/native-stack @react-navigation/bottom-tabs @react-navigation/drawer
+    npm install react-native-screens react-native-safe-area-context
