@@ -1,0 +1,5 @@
+react-navigation
+
+    https://reactnavigation.org/
+
+    npm install @react-navigation/native @react-navigation/native-stack @react-navigation/bottom-tabs @react-navigation/drawer
