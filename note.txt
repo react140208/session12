@@ -7,4 +7,5 @@ react-navigation
 
 
 Supabase
-    npm install @supabase/supabase-js react-native-url-polyfill  @react-native-async-storage/async-storage
+    npm install @supabase/supabase-js react-native-url-polyfill  
+        🐞 @react-native-async-storage/async-storage
