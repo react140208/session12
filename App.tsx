@@ -18,6 +18,7 @@ import {
 import HomeScreen from './screen/HomeScreen';
 import DrugListScreen from './screen/DrugListScreen';
 import DrugDetailScreen from './screen/DrugDetailScreen';
+import DrugStoreScreen from './screen/DrugStoreScreen'
 
 
 const Stack = createNativeStackNavigator();
@@ -36,6 +37,7 @@ function App(): React.JSX.Element {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="DrugList" component={DrugListScreen} options={{ header: () => <Text>لیست داروها</Text> }} />
         <Stack.Screen name="DrugDetail" component={DrugDetailScreen} options={{ header: () => <Text>لیست داروها</Text> }} />
+        <Stack.Screen name="DrugStore" component={DrugStoreScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
