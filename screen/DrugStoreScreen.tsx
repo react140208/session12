@@ -21,7 +21,6 @@ export default function DrugStoreScreen(props: any) {
                 long: location.coords.longitude
             }).limit(20)
             setDrugStores(resp.data)
-            console.log(`addDrugStores(${JSON.stringify(resp.data)})`)
         })();
     }, [location])
     return (
