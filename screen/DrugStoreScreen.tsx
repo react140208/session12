@@ -6,7 +6,7 @@ import { supabase } from '../api';
 
 
 
-export default function DrugStoreScreen(props: any) {
+export default function DrugStoreScreen({ navigation }: any) {
     const [location, setLocation] = useState<GeolocationResponse>();
     const [drugStores, setDrugStores] = useState<any[]>([]);
     useEffect(() => {
@@ -52,7 +52,15 @@ export default function DrugStoreScreen(props: any) {
                 for(let i=0; i<stores.length; i++){
                     let store = stores[i];
                     //alert(store.id)
-                    L.marker([pointToLatLang(store.location).lat, pointToLatLang(store.location).lang]).addTo(map).bindPopup(store.name).openPopup();
+                    let m = L.marker([pointToLatLang(store.location).lat, pointToLatLang(store.location).lang])
+                        .addTo(map)
+                        .bindPopup(store.name)
+                        .openPopup()
+                        .on('dblclick', (e)  => {                            
+                            window.ReactNativeWebView.postMessage(e.target.myId)
+                        })
+                        ;
+                    m.myId=store.id;
                     
                 }
             }
@@ -62,6 +70,8 @@ export default function DrugStoreScreen(props: any) {
         ` }} style={{ flex: 1 }}
             // injectedJavaScript={`L.marker([35.716691, 51.391983]).addTo(map).bindPopup('A pretty CSS popup.<br> Easily customizable.').openPopup();`}
             injectedJavaScript={`addDrugStores('${JSON.stringify(drugStores)}')`}
+
+            onMessage={(event) => navigation.navigate('DrugStoreDetail', { id: event.nativeEvent.data })}
         />
     )
 }
