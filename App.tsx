@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, } from '@react-navigation/native';
 import React from 'react';
-import type { PropsWithChildren } from 'react';
+import type { PropsWithChildren, } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -10,6 +10,7 @@ import {
   Text,
   useColorScheme,
   View,
+  I18nManager
 } from 'react-native';
 
 import {
@@ -23,6 +24,8 @@ import DrugStoreDetailScreen from './screen/DrugStoreDetailScreen';
 
 const Stack = createNativeStackNavigator();
 
+I18nManager.allowRTL(true);
+I18nManager.forceRTL(true);
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
