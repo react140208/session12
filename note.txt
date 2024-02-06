@@ -31,3 +31,7 @@ Data Persistence
     Embedded Database
         SQLite
         Realm
+
+    sqlite
+        npm i react-native-sqlite-storage
+        npm i -D @types/react-native-sqlite-storage
