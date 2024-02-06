@@ -16,3 +16,8 @@ Session11
 camera
     https://github.com/mrousavy/react-native-vision-camera
     
+
+Icon - https://github.com/oblador/react-native-vector-icons
+    npm i react-native-vector-icons
+    npm i -D @types/react-native-vector-icons
+    file app/build.gradle

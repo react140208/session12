@@ -4,7 +4,7 @@ import {
   useColorScheme,
   I18nManager
 } from 'react-native';
-
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ScanScreen from './screen/ScanScreen';
@@ -22,8 +22,18 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="HomeTab" component={HomeTab} options={{ headerShown: false }} />
-        <Tab.Screen name="Scan" component={ScanScreen} />
+        <Tab.Screen name="HomeTab" component={HomeTab} options={{
+          headerShown: false, tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
+        }} />
+        <Tab.Screen name="Scan" component={ScanScreen} options={{
+          headerShown: false, tabBarLabel: 'Scan',
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="data-matrix-scan" color={color} size={size} />
+          ),
+        }} />
       </Tab.Navigator>
     </NavigationContainer>
   );
