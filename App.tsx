@@ -11,6 +11,7 @@ import ScanScreen from './screen/ScanScreen';
 import HomeTab from './screen/HomeTab';
 import { fetch, addEventListener } from "@react-native-community/netinfo";
 import { SQLiteDatabase, enablePromise, openDatabase } from 'react-native-sqlite-storage'
+
 enablePromise(true);
 
 
