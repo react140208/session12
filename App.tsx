@@ -1,5 +1,5 @@
 import { NavigationContainer, } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   useColorScheme,
   I18nManager
@@ -9,15 +9,27 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ScanScreen from './screen/ScanScreen';
 import HomeTab from './screen/HomeTab';
+import { fetch, addEventListener } from "@react-native-community/netinfo";
 
 const Tab = createBottomTabNavigator();
 
 I18nManager.allowRTL(true);
 I18nManager.forceRTL(true);
 
+addEventListener(state => {
+  console.log("Connection type", state.type);
+  console.log("Is connected?", state.isConnected);
+});
+
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
+  useEffect(() => {
+    fetch().then(state => {
+      console.log("Connection type", state.type);
+      console.log("Is connected?", state.isConnected);
+    });
+  }, [])
 
   return (
     <NavigationContainer>

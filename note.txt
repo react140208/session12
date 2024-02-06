@@ -21,3 +21,13 @@ Icon - https://github.com/oblador/react-native-vector-icons
     npm i react-native-vector-icons
     npm i -D @types/react-native-vector-icons
     file app/build.gradle
+
+NetInfo
+    npm i @react-native-community/netinfo
+
+
+Data Persistence 
+    LocalStore -> AsyncStorage
+    Embedded Database
+        SQLite
+        Realm
