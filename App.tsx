@@ -12,6 +12,7 @@ import HomeTab from './screen/HomeTab';
 import { fetch, addEventListener } from "@react-native-community/netinfo";
 import { SQLiteDatabase, enablePromise, openDatabase } from 'react-native-sqlite-storage'
 import messaging from '@react-native-firebase/messaging'
+import { ThemeProvider, createTheme } from '@rneui/themed';
 // import { PermissionsAndroid } from 'react-native';
 
 // PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
@@ -19,6 +20,21 @@ import messaging from '@react-native-firebase/messaging'
 // messaging().setBackgroundMessageHandler(async remoteMessage => {
 //   console.log('Message handled in the background!', remoteMessage);
 // });
+
+
+const theme = createTheme({
+  lightColors: {
+    primary: 'red',
+  },
+  darkColors: {
+    primary: 'blue',
+  },
+  components: {
+    Button: {
+      raised: true,
+    },
+  },
+});
 
 
 enablePromise(true);
@@ -108,22 +124,24 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="HomeTab" component={HomeTab} options={{
-          headerShown: false, tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
-          ),
-        }} />
-        <Tab.Screen name="Scan" component={ScanScreen} options={{
-          headerShown: false, tabBarLabel: 'Scan',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="data-matrix-scan" color={color} size={size} />
-          ),
-        }} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <ThemeProvider theme={theme}>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="HomeTab" component={HomeTab} options={{
+            headerShown: false, tabBarLabel: 'Home',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="home" color={color} size={size} />
+            ),
+          }} />
+          <Tab.Screen name="Scan" component={ScanScreen} options={{
+            headerShown: false, tabBarLabel: 'Scan',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="data-matrix-scan" color={color} size={size} />
+            ),
+          }} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
 

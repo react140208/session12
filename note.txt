@@ -55,3 +55,7 @@ Notification
         2. https://rnfirebase.io/
             npm install --save @react-native-firebase/app
             npm install  @react-native-firebase/messaging
+
+
+UI Components 
+    https://reactnativeelements.com/
