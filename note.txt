@@ -43,3 +43,13 @@ Notification
 
 
 Session 12: 
+Rename app
+    npx react-native-rename@latest "Drug Reminder" -b "ir.fad.rn.drag_reminder"
+
+Notification   
+    Push Notification 
+        1. firebase
+            +account
+            +project
+        2. https://rnfirebase.io/
+            npm install --save @react-native-firebase/app
