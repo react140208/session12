@@ -65,3 +65,20 @@ Deeplink
     https://reactnavigation.org/docs/deep-linking/
 
     npx uri-scheme add drug --android
+
+Release 
+    APK
+        cd android
+        .\gradlew assembleRelease
+    AAB - Google Play Store
+        .\gradlew release
+
+
+Sign
+    keytool <- C:\Program Files\Java\jdk?? \bin
+    cmd -> run as admin
+
+    keytool -genkeypair -v -storetype PKCS12 -keystore my-upload-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
+
+    windows -> %homepath%\.gradle
+        gradle.properties
