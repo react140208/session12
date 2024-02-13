@@ -90,7 +90,7 @@ app.post('/pay/get_redirect', (req, res) => {
                         <h1>
                             تراکنش موفقیت آمیز بود
                         </h1>
-                        <a href="#">بازگشت به برنامه</a>
+                        <a href="drug://Home/21">بازگشت به برنامه</a>
                         `)
                         break
                     case 11:

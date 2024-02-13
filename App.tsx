@@ -51,6 +51,21 @@ I18nManager.forceRTL(true);
 // });
 
 
+const config = {
+  screens: {
+    HomeTab: {
+      screens: {
+        Drug: 'Home/:id',
+      },
+    },
+  },
+};
+
+const linking = {
+  prefixes: ['drug://'],
+  config,
+};
+
 function App(): React.JSX.Element {
   const [db, setDb] = useState<SQLiteDatabase>();
   const isDarkMode = useColorScheme() === 'dark';
