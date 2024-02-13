@@ -11,6 +11,15 @@ import ScanScreen from './screen/ScanScreen';
 import HomeTab from './screen/HomeTab';
 import { fetch, addEventListener } from "@react-native-community/netinfo";
 import { SQLiteDatabase, enablePromise, openDatabase } from 'react-native-sqlite-storage'
+import messaging from '@react-native-firebase/messaging'
+// import { PermissionsAndroid } from 'react-native';
+
+// PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
+
+// messaging().setBackgroundMessageHandler(async remoteMessage => {
+//   console.log('Message handled in the background!', remoteMessage);
+// });
+
 
 enablePromise(true);
 
@@ -29,6 +38,15 @@ I18nManager.forceRTL(true);
 function App(): React.JSX.Element {
   const [db, setDb] = useState<SQLiteDatabase>();
   const isDarkMode = useColorScheme() === 'dark';
+
+  // useEffect(() => {
+  //   const unsubscribe = messaging().onMessage(async remoteMessage => {
+  //     // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+  //     console.log(remoteMessage)
+  //   });
+
+  //   return unsubscribe;
+  // }, []);
 
   useEffect(() => {
     fetch().then(state => {

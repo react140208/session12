@@ -1,6 +1,12 @@
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+apply plugin: 'com.google.gms.google-services'
+
+// plugin{
+//     id 'com.android.application'
+//     id 'com.google.gms.google-services'
+// }
 
 project.ext.vectoricons = [
     iconFontNames: [ 'MaterialCommunityIcons.ttf' ] // Specify font files
@@ -110,6 +116,8 @@ android {
 }
 
 dependencies {
+    // implementation platform('com.google.firebase:firebase-bom:32.7.2')
+
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
     implementation("com.facebook.react:flipper-integration")

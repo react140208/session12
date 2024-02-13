@@ -1,6 +1,7 @@
 import { View, Text, Button } from 'react-native'
 import notifee from '@notifee/react-native';
 
+
 export default function HomeScreen(props: any) {
     const gotoDrugList = () => {
         props.navigation.push('DrugList')
