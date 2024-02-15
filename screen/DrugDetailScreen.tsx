@@ -58,7 +58,8 @@ export default function DrugDetailScreen({ navigation, route }: any) {
     }
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>DrugDetailScreen {drug && drug.drugGenericFaName}</Text>
+            <Text>ID: {id} </Text>
+            <Text>DrugDetailScreen {drug && drug.drugGenericFaName} </Text>
             <Button onPress={goBack} title='Back'></Button>
             <Button onPress={onDisplayNotification} title='یاد آوری'></Button>
 

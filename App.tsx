@@ -55,13 +55,13 @@ const config = {
   screens: {
     HomeTab: {
       screens: {
-        Drug: 'Home/:id',
+        DrugDetail: 'Home/:id',
       },
     },
   },
 };
 
-const linking = {
+const linking: any = {
   prefixes: ['drug://'],
   config,
 };
@@ -142,7 +142,7 @@ function App(): React.JSX.Element {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
+      <NavigationContainer linking={linking}>
         <Tab.Navigator>
           <Tab.Screen name="HomeTab" component={HomeTab} options={{
             headerShown: false, tabBarLabel: 'Home',
